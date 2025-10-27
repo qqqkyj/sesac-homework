@@ -568,21 +568,37 @@ function processScore(student) {
 // 반환값: 원본 객체에 할인가격(discountPrice) 속성과 값을 추가한 객체 (할인율 10% 적용)
 // 함수 작성 후 아래 주석 처리된 테스트 코드의 주석을 해제하고 실행하여 출력 결과를 비교한다
 
-/*
-console.log(processProduct({ name: "스마트폰", price: 100000 })); // { name: '스마트폰', price: 100000, discountPrice: 90000 }
-console.log(processProduct({ name: "노트북", price: 150000 })); // { name: '노트북', price: 150000, discountPrice: 135000 }
-*/
+function processProduct(product) {
+	let discountPrice = 0.9 * product["price"];
+	product["price"] = discountPrice;
+	return product;
+}
+
+// console.log(processProduct({ name: "스마트폰", price: 100000 })); // { name: '스마트폰', price: 100000, discountPrice: 90000 }
+// console.log(processProduct({ name: "노트북", price: 150000 })); // { name: '노트북', price: 150000, discountPrice: 135000 }
 
 // 문제 [개념]
 // 배열의 고차 메서드 map()과 filter()의 기능을 작성한다
 
+// map() : 배열 각 원소를 변환하여 새 배열 생성
+// filter() : 조건을 만족하는 원소만 새 배열로 반환
+
 // 문제 [개념]
 // 배열의 고차 메서드 map()과 filter()의 차이점을 작성한다
+
+// map()은 변형이고 filter()는 선택
 
 // 문제 [실습]
 // 변수 numbers3를 선언하고, 배열 데이터 [1, 2, 3, 4, 5]를 할당한다
 // numbers3의 각 요소를 제곱한 새로운 배열을 생성하고, 변수 newNumbers에 할당한다.
 // 변수 newNumbers를 출력한다
+
+let number3 = [1, 2, 3, 4, 5];
+let newNumbers = number3.map((num) => {
+	return num * num;
+});
+
+// console.log(newNumbers);
 
 /* 출력 결과
 [1, 4, 9, 16, 25]
@@ -593,6 +609,13 @@ console.log(processProduct({ name: "노트북", price: 150000 })); // { name: '�
 // prices의 각 요소에 10%의 세금을 추가한 새로운 배열을 생성하고, 변수 taxIncludedPrices에 할당한다.
 // 변수 taxIncludedPrices를 출력한다
 
+let prices = [1000, 2000, 3000, 4000, 5000];
+let taxIncludedPrices = prices.map((price) => {
+	return Math.round(price * 1.1);
+});
+
+// console.log(taxIncludedPrices);
+
 /* 출력 결과
 [1100, 2200, 3300, 4400, 5500]
 */
@@ -602,6 +625,13 @@ console.log(processProduct({ name: "노트북", price: 150000 })); // { name: '�
 // numbers4의 각 요소 중 짝수만 필터링한 새로운 배열을 생성하고, 변수 newNumbers2에 할당한다.
 // 변수 newNumbers2를 출력한다
 
+let number4 = [1, 2, 3, 4, 5];
+let newNumbers2 = number4.filter((num) => {
+	return num % 2 === 0;
+});
+
+// console.log(newNumbers2);
+
 /* 출력 결과
 [2, 4]
 */
@@ -610,6 +640,13 @@ console.log(processProduct({ name: "노트북", price: 150000 })); // { name: '�
 // 변수 ages를 선언하고, 배열 데이터 [15, 18, 22, 16, 25, 17]를 할당한다
 // ages의 각 요소 중 18 이상인 나이만 필터링한 새로운 배열을 생성하고, 변수 adults에 할당한다.
 // 변수 adults를 출력한다
+
+let ages = [15, 18, 22, 16, 25, 17];
+let adults = ages.filter((age) => {
+	return age >= 18;
+});
+
+// console.log(adults);
 
 /* 출력 결과
 [18, 22, 25]
@@ -652,6 +689,11 @@ const originTodos = [
 // 변수 originTodos의 각 원소 객체 중 priority 속성의 값이 0인 원소만 필터링하고, 변수 highPriorityTodos에 할당한다
 // 변수 highPriorityTodos를 출력한다
 
+let highPriorityTodos = originTodos.filter((todo) => {
+	return todo["priority"] === 0;
+});
+// console.log(highPriorityTodos);
+
 /* 출력 결과
 [
   { id: 1, text: '할 일 1', completed: true, priority: 0 },
@@ -662,6 +704,12 @@ const originTodos = [
 // 문제 [실습]
 // 변수 originTodos의 각 원소 객체 중 priority 속성의 값이 1인 원소만 필터링하고, 변수 mediumPriorityTodos에 할당한다
 // 변수 mediumPriorityTodos를 출력한다
+
+let mediumPriorityTodos = originTodos.filter((todo) => {
+	return todo["priority"] === 1;
+});
+
+// console.log(mediumPriorityTodos);
 
 /* 출력 결과
 [
@@ -674,6 +722,12 @@ const originTodos = [
 // 변수 originTodos의 각 원소 객체 중 completed 속성의 값이 false인 원소만 필터링하고, 변수 incompleteTodos에 할당한다
 // 변수 incompleteTodos를 출력한다
 
+let incompleteTodos = originTodos.filter((todo) => {
+	return !todo["completed"];
+});
+
+// console.log(incompleteTodos);
+
 /* 출력 결과
 [
   { id: 2, text: '할 일 2', completed: false, priority: 1 },
@@ -685,11 +739,15 @@ const originTodos = [
 // 문제 [개념]
 // 스프레드 연산자 ...에 대한 설명을 작성한다
 
+// 기존 배열이나 객체의 전체 또는 일부를 복사
+
 // 문제 [실습]
 // 스프레드 연산자를 활용하여 변수 object5를 복사한 새로운 객체를 생성하고, 변수 object6에 할당한다
 const object5 = { name: "홍길동", age: 20, city: "서울" };
 
 // 변수 object6를 출력한다
+const object6 = { ...object5 };
+// console.log(object6);
 
 /* 출력 결과
 { name: '홍길동', age: 20, city: '서울' }
@@ -701,8 +759,10 @@ const object5 = { name: "홍길동", age: 20, city: "서울" };
 // 문제 [실습]
 // 스프레드 연산자를 활용하여 변수 student2를 복사한 새로운 객체를 생성하고, 변수 student3에 할당한다
 const student2 = { name: "이영희", grade: 2, subject: "영어" };
+const student3 = { ...student2 };
 
 // 변수 student3를 출력한다
+// console.log(student3);
 
 /* 출력 결과
 { name: '이영희', grade: 2, subject: '영어' }
@@ -714,8 +774,10 @@ const student2 = { name: "이영희", grade: 2, subject: "영어" };
 // 문제 [실습]
 // 스프레드 연산자를 활용하여 변수 object7에 속성명(key) country, 속성값(value) "대한민국" 인 속성을 추가한 새로운 객체를 생성하고, 변수 object8에 할당한다
 const object7 = { name: "홍길동", age: 20, city: "서울" };
+const object8 = { ...object7, country: "대한민국" };
 
 // 변수 object8를 출력한다
+// console.log(object8);
 
 /* 출력 결과
 { name: '홍길동', age: 20, city: '서울', country: '대한민국' }
@@ -724,8 +786,10 @@ const object7 = { name: "홍길동", age: 20, city: "서울" };
 // 문제 [실습]
 // 스프레드 연산자를 활용하여 변수 laptop에 속성명(key) warranty, 속성값(value) "2년" 인 속성을 추가한 새로운 객체를 생성하고, 변수 laptopWithWarranty에 할당한다
 const laptop = { brand: "LG", model: "그램", price: 1500000 };
+const laptopWithWarranty = { ...laptop, warranty: "2년" };
 
 // 변수 laptopWithWarranty를 출력한다
+// console.log(laptopWithWarranty);
 
 /* 출력 결과
 { brand: 'LG', model: '그램', price: 1500000, warranty: '2년' }
@@ -734,13 +798,15 @@ const laptop = { brand: "LG", model: "그램", price: 1500000 };
 // 문제 [실습]
 // 스프레드 연산자 ... 를 활용하여 변수 array1을 복사한 새로운 배열을 생성하고, 변수 array2에 할당한다
 const array1 = [1, 2, 3, 4, 5];
+const array3 = [...array1];
 
 // 아래 주석을 풀어서 두 변수(array1, array2)의 비교 결과를 출력한다
-// console.log(array1 === array2); // false
+// console.log(array1 === array3); // false
 
 // 문제 [실습]
 // 스프레드 연산자 ... 를 활용하여 변수 fruits2를 복사한 새로운 배열을 생성하고, 변수 fruits3에 할당한다
 const fruits2 = ["사과", "바나나", "오렌지"];
+const fruits3 = [...fruits2];
 
 // 아래 주석을 풀어서 두 변수(fruits2, fruits3)의 비교 결과를 출력한다
 // console.log(fruits2 === fruits3); // false
@@ -749,6 +815,9 @@ const fruits2 = ["사과", "바나나", "오렌지"];
 // 스프레드 연산자 ... 를 활용하여 변수 array1에 숫자 6을 추가한 새로운 배열을 생성하고, 변수 array3에 할당한다
 // 변수 array3를 출력한다
 
+const array4 = [...array1, 6];
+// console.log(array4);
+
 /* 출력 결과
 [1, 2, 3, 4, 5, 6]
 */
@@ -756,21 +825,24 @@ const fruits2 = ["사과", "바나나", "오렌지"];
 // 문제 [실습]
 // 스프레드 연산자 ... 를 활용하여 변수 colors3에 문자열 "보라색"을 추가한 새로운 배열을 생성하고, 변수 colors4에 할당한다
 const colors3 = ["빨강", "파랑", "노랑"];
+const colors4 = [...colors3, "보라색"];
 // 변수 colors4를 출력한다
-
+// console.log(colors4);
 /* 출력 결과
 ["빨강", "파랑", "노랑", "보라색"]
 */
 
 // 문제 [개념]
 // 구조 분해 할당에 대한 설명을 작성한다
+// 배열이나 객체의 값을 변수에 할당
 
 // 문제 [실습]
 // 구조 분해 할당을 활용하여 변수 object9의 name 속성을 변수 name에, age 속성을 변수 age에, city 속성을 변수 city에 할당한다
-const object9 = { name: "홍길동", age: 20, city: "서울" };
+const object9 = { name: "홍길동", age2: 20, city: "서울" };
+const { name, age2, city } = object9;
 
 // 아래 주석을 해제해서 변수 name, age, city를 출력한다
-// console.log(name, age, city);
+// console.log(name, age2, city);
 
 /* 출력 결과
 홍길동 20 서울
@@ -779,6 +851,7 @@ const object9 = { name: "홍길동", age: 20, city: "서울" };
 // 문제 [실습]
 // 구조 분해 할당을 활용하여 변수 car2의 brand 속성을 변수 carBrand에, model 속성을 변수 carModel에, year 속성을 변수 carYear에 할당한다
 const car2 = { brand: "기아", model: "K5", year: 2022 };
+const { brand: carBrand, model: carModel, year: carYear } = car2;
 
 // 아래 주석을 해제해서 변수 carBrand, carModel, carYear를 출력한다
 // console.log(carBrand, carModel, carYear);
@@ -790,6 +863,7 @@ const car2 = { brand: "기아", model: "K5", year: 2022 };
 // 문제 [실습]
 // 구조 분해 할당을 활용하여 변수 array2의 첫 번째 원소를 변수 first에, 두 번째 원소를 변수 second에, 나머지 원소를 변수 rest에 할당한다
 const array2 = [1, 2, 3, 4, 5];
+const [first, second, ...rest] = array2;
 
 // 아래 주석을 해제해서 변수 first, second, rest를 출력한다
 // console.log(first, second, rest);
@@ -801,9 +875,10 @@ const array2 = [1, 2, 3, 4, 5];
 // 문제 [실습]
 // 구조 분해 할당을 활용하여 변수 scores2의 첫 번째 원소를 변수 firstScore에, 두 번째 원소를 변수 secondScore에, 나머지 원소를 변수 restScores에 할당한다
 const scores2 = [95, 87, 92, 78, 89];
+// const [firstScore, secondScore, ...restScores] = scores2;
 
 // 아래 주석을 해제해서 변수 firstScore, secondScore, restScores를 출력한다
-// console.log(firstScore, secondScore, restScores);
+console.log(firstScore, secondScore, restScores);
 
 /* 출력 결과
 95 87 [92, 78, 89]
