@@ -6,6 +6,10 @@
 // 함수명: findMin
 // 반환값: 배열의 최솟값
 
+// const findMin = (array) => {
+// 	return Math.min(...array);
+// };
+
 try {
 	console.log(findMin([5, 2, 8, 1, 9])); // 1
 	console.log(findMin([-1, -5, -2, -8, -3])); // -8
@@ -15,6 +19,14 @@ try {
 // 사용자 정보 객체 배열을 인자로 받아, age 속성의 평균을 계산하여 반환하는 함수를 작성한다
 // 함수명: getAverageAge
 // 반환값: 사용자들의 age 속성의 평균
+
+// const getAverageAge = (users) => {
+// 	let sum = 0;
+// 	for (let i = 0; i < users.length; i++) {
+// 		sum += users[i]["age"];
+// 	}
+// 	return sum / users.length;
+// };
 
 try {
 	const users = [
@@ -30,6 +42,14 @@ try {
 // 함수명: removeWhitespace
 // 반환값: 공백이 제거된 문자열
 
+// const removeWhitespace = (str) => {
+// 	const array = str.split("");
+// 	const newArray = array.filter((char) => char != " ");
+// 	return newArray.join("");
+// };
+
+// const removeWhitespace = (str) => str.replace(/\s/g, "");
+
 try {
 	console.log(removeWhitespace("  hello   world  ")); // "helloworld"
 	console.log(removeWhitespace("javascript is awesome")); // "javascriptisawesome"
@@ -40,6 +60,21 @@ try {
 // 함수명: getIntersection
 // 반환값: 두 배열의 공통 원소로 구성된 배열
 
+// const getIntersection = (arr1, arr2) => {
+// 	const newArray = [];
+// 	for (let i = 0; i < arr1.length; i++) {
+// 		for (let j = 0; j < arr2.length; j++) {
+// 			if (arr1[i] === arr2[j]) newArray.push(arr1[i]);
+// 		}
+// 	}
+// 	return newArray;
+// };
+
+// const getIntersection = (arr1, arr2) => {
+// 	const newArray = [...arr1, ...arr2];
+// 	return [...new Set(newArray)];
+// };
+
 try {
 	console.log(getIntersection([1, 2, 3, 4], [3, 4, 5, 6])); // [3, 4]
 	console.log(getIntersection(["a", "b", "c"], ["b", "c", "d"])); // ["b", "c"]
@@ -49,6 +84,10 @@ try {
 // 객체와 키(key) 문자열을 인자로 받아, 해당 키에 해당하는 값을 반환하는 함수를 작성한다. 만약 키가 존재하지 않으면 null을 반환한다
 // 함수명: getKeyValue
 // 반환값: 키에 해당하는 값 또는 null
+
+// const getKeyValue = (person, key) => {
+// 	return person[key] != null ? person[key] : null; //person[key] ?? null
+// };
 
 try {
 	const person = { name: "홍길동", age: 30, city: "서울" };
@@ -61,6 +100,10 @@ try {
 // 함수명: joinStrings
 // 반환값: 하나로 합쳐진 문자열
 
+// const joinStrings = (array) => {
+// 	return array.join("");
+// };
+
 try {
 	console.log(joinStrings(["hello", " ", "world"])); // "hello world"
 	console.log(joinStrings(["javascript", " ", "is", " ", "fun"])); // "javascript is fun"
@@ -70,6 +113,13 @@ try {
 // 숫자를 원화(KRW) 형식의 문자열로 변환하여 반환하는 함수를 작성한다
 // 함수명: formatToKRW
 // 반환값: 원화 형식의 문자열 (ex: 1000 -> "₩1,000")
+
+// const formatToKRW = (num) => {
+// 	return new Intl.NumberFormat("ko-KR", {
+// 		style: "currency",
+// 		currency: "KRW",
+// 	}).format(num);
+// };
 
 try {
 	console.log(formatToKRW(1000)); // "₩1,000"
@@ -81,6 +131,14 @@ try {
 // (객체의 값(value)은 유일한 문자열이라고 가정한다)
 // 함수명: invertObject
 // 반환값: 키와 값이 뒤바뀐 새로운 객체
+
+// const invertObject = (obj) => {
+// 	const newObj = {};
+// 	for (const key of Object.keys(obj)) {
+// 		newObj[obj[key]] = key;
+// 	}
+// 	return newObj;
+// };
 
 try {
 	const obj = { name: "홍길동", city: "서울" };
@@ -94,6 +152,15 @@ try {
 // 학생 정보 객체 배열과 특정 과목명을 인자로 받아, 해당 과목의 점수가 가장 높은 학생의 이름을 반환하는 함수를 작성한다
 // 함수명: findTopStudent
 // 반환값: 특정 과목에서 최고 점수를 받은 학생의 이름
+
+// const findTopStudent = (students, subject) => {
+// 	let maxScoreStudent = students[0];
+// 	for (const student of students) {
+// 		if (student["scores"][subject] > maxScoreStudent["scores"][subject])
+// 			maxScoreStudent = student;
+// 	}
+// 	return maxScoreStudent["name"];
+// };
 
 try {
 	const students = [
@@ -109,6 +176,14 @@ try {
 // [['key1', 'value1'], ['key2', 'value2']] 형태의 2차원 배열을 인자로 받아, 이를 객체로 변환하는 함수를 작성한다
 // 함수명: arrayToObject
 // 반환값: 키-값 쌍으로 이루어진 객체
+
+// const arrayToObject = (arrs) => {
+// 	const obj = {};
+// 	for (const arr of arrs) {
+// 		obj[arr[0]] = arr[1];
+// 	}
+// 	return obj;
+// };
 
 try {
 	const arr = [
@@ -129,6 +204,15 @@ try {
 // 상품 정보 객체 배열과 카테고리 키를 인자로 받아, 카테고리별로 상품을 그룹화한 객체를 반환하는 함수를 작성한다
 // 함수명: groupByCategory
 // 반환값: 카테고리별로 그룹화된 상품 객체
+
+// const groupByCategory = (products) => {
+// 	const newObj = {};
+// 	for (const product of products) {
+// 		if (!newObj[product["category"]]) newObj[product["category"]] = [product];
+// 		else newObj[product["category"]].push(product);
+// 	}
+// 	return newObj;
+// };
 
 try {
 	const products = [
