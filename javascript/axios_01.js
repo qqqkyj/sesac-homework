@@ -118,9 +118,9 @@ async function getAllProductsArray() {
 // 함수이름 : getSingleProduct
 // 요구사항 : 단일 상품 목록 조회(Get a single product) API를 호출해서 상품 id가 1인 상품 정보를 출력한다
 
-async function getSingleProduct(id) {
+export async function getSingleProduct(id) {
 	const res = await axios.get(`https://dummyjson.com/products/${id}`);
-	console.log(res["data"]);
+	// console.log(res["data"]);
 	return res["data"];
 }
 
@@ -251,7 +251,7 @@ const getPostsByUserId = async (id) => {
 	console.log(res["data"]);
 };
 
-getPostsByUserId(70);
+// getPostsByUserId(70);
 
 /* 출력 결과
 {
